@@ -285,7 +285,7 @@ class S3:
 
                 # Compare timestamps and file sizes
                 # allow for up to 1s of difference in timestamps
-                s3_newer = abs(s3_last_modified_timestamp - local_last_modified_timestamp) > 1
+                s3_newer = (s3_last_modified_timestamp - local_last_modified_timestamp) > 1
                 s3_different_size = s3_response["ContentLength"] != os.path.getsize(local_file_path)
 
                 if s3_newer or s3_different_size:

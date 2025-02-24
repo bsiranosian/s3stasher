@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "s3stasher"
-version = "0.0.2"
+version = "0.0.3"
 description = "A python package for working with objects in AWS S3 as if they were local files, including cache management and offline usage."
 authors = ["Ben Siranosian <bsiranosian@gmail.com>"]
 license = "MIT"
