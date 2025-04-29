@@ -53,8 +53,6 @@ class S3:
 
     if env_path.exists():
         load_dotenv(dotenv_path=env_path)
-    else:
-        print(f"s3stasher warning: {env_path} not found. Default configuration will be used.")
 
     # aws profile -- either defined in the environment or default
     profile_name = os.getenv("AWS_PROFILE", DEFAULT_PROFILE_NAME)
