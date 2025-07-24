@@ -65,7 +65,7 @@ class S3:
     _cache_dir = Path(os.path.expanduser(os.getenv("S3STASHER_CACHE_DIR", DEFAULT_CACHE_DIR)))
     try:
         if not _cache_dir.exists():
-            os.makedirs(_cache_dir)
+            os.makedirs(_cache_dir, exist_ok=True)
     except PermissionError as exc:
         raise PermissionError(f"Permission denied to create cache directory {_cache_dir}") from exc
 
