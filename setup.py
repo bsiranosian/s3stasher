@@ -7,7 +7,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="s3stasher",
-    version="0.1.0",
+    version="0.0.4",
     author="Ben Siranosian",
     author_email="bsiranosian@gmail.com",
     description="A python package for working with objects in AWS S3 as if they were local files, including cache management, offline usage, and more.",
