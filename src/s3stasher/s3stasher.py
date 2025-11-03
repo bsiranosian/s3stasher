@@ -206,6 +206,7 @@ class S3:
         force_download: bool = False,
         quiet: bool = False,
         progress: bool = False,
+        skip_local_file_checks: bool = False,
     ) -> Iterator[Path]:
         """
         Yields a local file path for reading from S3 or a local file. If the file is not already cached locally, it will be downloaded from S3.
@@ -227,6 +228,7 @@ class S3:
         :param force_download: if True, will download the file from S3 even if it's already cached locally. Defaults to False.
         :param quiet: suppress print statements. Defaults to False.
         :param progress: show download progress. Defaults to False.
+        :param skip_local_file_checks: if True, will skip checking if the local file is up to date. This can speed up loading large numbers of files. Defaults to False.
         :yield: local_file_path: path of locally cached file.
         """
         # if the input is type Path, assume it's a local file path
@@ -269,7 +271,8 @@ class S3:
         # if the file does exist locally, check that it's up to date and the same size
         else:
             # if we're offline, yield the cached file (we can't check if it's up to date)
-            if not S3._online_mode:
+            # or if we're skipping local file checks, just yield the local file
+            if not S3._online_mode or skip_local_file_checks:
                 yield local_file_path
             else:
                 # Check the last modified timestamp of the S3 object and the local file
