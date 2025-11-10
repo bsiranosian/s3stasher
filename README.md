@@ -22,7 +22,7 @@ with S3.s3open("s3://my-bucket/my_data.csv") as f:
 
 # Two layers of context manager are needed for traditional open operations
 with S3.s3open("s3://my-bucket/unstructured.txt") as s3f:
-    with open(s3f as f):
+    with open(s3f) as f:
         lines = f.readlines()
 
 # Write a file back to s3. By default, it will be saved in the cache dir 
